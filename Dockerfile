@@ -4,7 +4,7 @@
 FROM kalilinux/kali-rolling 
 
 # Apt 
-RUN apt-get -y update 
+RUN apt-get -y update && apt-get upgrade -y
 
 # Install tools we want 
 RUN apt-get install -y \ 
