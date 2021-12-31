@@ -20,7 +20,7 @@ RUN apt-get install -y \
    hashcat \ 
    # Wordlists 
    wordlists \  
-    cewl \ 
+   cewl \ 
    aircrack-ng \ 
    crackmapexec \ 
    crunch \ 
@@ -40,7 +40,7 @@ RUN apt-get install -y \
    mimikatz \ 
    ncat \ 
    netcat-traditional \  
-    patator \ 
+   patator \ 
    php \ 
    powersploit \ 
    proxychains \ 
@@ -55,11 +55,12 @@ RUN apt-get install -y \
    sslscan \ 
    sslstrip \ 
    theharvester \  
-    vim \ 
+   vim \ 
    wafw00f \  
-    weevely \ 
+   weevely \ 
    whois \ 
-   wpscan  
+   wpscan \
+   iputils-ping
  
 
 # History 
