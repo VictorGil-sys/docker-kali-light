@@ -1,27 +1,74 @@
-# Dockerfile kali-light
+# Dockerfile kali-light 
 
-# Official base image
-FROM kalilinux/kali-rolling
+# Official base image 
+FROM kalilinux/kali-rolling 
 
-# Set working directory to /root
-WORKDIR /root
+# Apt 
+RUN apt-get -y update 
 
-# Apt
-RUN apt -y update --fix-missing && apt -y upgrade && apt -y autoremove && apt clean
+# Install tools we want 
+RUN apt-get install -y \ 
+   hydra \ 
+   john \ 
+   metasploit-framework \ 
+   nmap \ 
+   sqlmap \ 
+   wfuzz \ 
+   exploitdb \ 
+   nikto \ 
+   commix \ 
+   hashcat \ 
+   # Wordlists 
+   wordlists \  
+    cewl \ 
+   aircrack-ng \ 
+   crackmapexec \ 
+   crunch \ 
+   dirb \ 
+   dirbuster \ 
+   dnsenum \ 
+   dnsrecon \ 
+   dnsutils \ 
+   dos2unix \ 
+   enum4linux \ 
+   ftp \ 
+   gobuster \ 
+   hping3 \ 
+   impacket-scripts \ 
+   joomscan \ 
+   masscan \ 
+   mimikatz \ 
+   ncat \ 
+   netcat-traditional \  
+    patator \ 
+   php \ 
+   powersploit \ 
+   proxychains \ 
+   recon-ng \ 
+   responder \ 
+   samba \ 
+   samdump2 \ 
+   smbclient \ 
+   smbmap \ 
+   snmp \ 
+   socat \ 
+   sslscan \ 
+   sslstrip \ 
+   theharvester \  
+    vim \ 
+   wafw00f \  
+    weevely \ 
+   whois \ 
+   wpscan  
+ 
 
-# Basic tools
-RUN apt install aircrack-ng amap apt-utils bsdmainutils cewl crackmapexec crunch curl dirb dirbuster dnsenum dnsrecon dnsutils dos2unix enum4linux exploitdb ftp gcc git gobuster golang hashcat hping3 hydra iputils-ping john joomscan kpcli libffi-dev make masscan metasploit-framework mimikatz nasm nbtscan ncat netcat-traditional nikto nmap onesixtyone oscanner passing-the-hash patator php powershell powersploit proxychains4 python2 python3 python3-pip python3-setuptools python-dev python-setuptools recon-ng responder ruby-dev samba samdump2 seclists sipvicious smbclient smbmap smtp-user-enum snmp socat sqlmap ssh-audit sslscan tcpdump testssl.sh theharvester tnscmd10g vim wafw00f weevely wfuzz whatweb whatweb whois wordlists wpscan zsh -y --no-install-recommends
+# History 
+ADD ./conf/history /root/.bash_history 
 
-# Advanced tools (comment if not needed)
-ADD ./install.sh /root/install.sh
-RUN chmod +x /root/install.sh && /root/install.sh && rm /root/install.sh
+# Aliases 
+ADD ./conf/aliases /opt/aliases 
+RUN echo 'source /opt/aliases' >> /root/.bashrc 
 
-# History
-ADD ./conf/history /root/.zsh_history
-
-# Aliases
-ADD ./conf/aliases /opt/aliases
-RUN echo 'source /opt/aliases' >> /root/.zshrc
-
-# Open shell
-CMD ["/bin/zsh"]
+# Open shell 
+CMD ["/bin/bash"]
+ 
