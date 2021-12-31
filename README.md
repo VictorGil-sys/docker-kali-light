@@ -15,13 +15,13 @@ Create share and zsh history
 
 ```
 sudo mkdir /mnt/share-kali-light
-sudo cp conf/history /mnt/share-kali-light/.zsh_history
+sudo cp conf/history /mnt/share-kali-light/.bash_history
 ```
 
 Build the image
 
 ```bash
-docker build -t kali-light .
+ docker build --network=host -t kali-light .
 ```
 
 Create containers
